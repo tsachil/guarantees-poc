@@ -1,19 +1,19 @@
 {
   "GuaranteeRequestLite3": {
     "Properties": {
-      "requestState": {
+      "State": {
         "Type": "state"
       },
-      "Bank": {
+      "_bank": {
         "Type": "user"
       },
-      "Customer": {
+      "_customer": {
         "Type": "user"
       },
-      "Beneficiary": {
+      "_beneficiary": {
         "Type": "user"
       },
-      "InternalAuditor": {
+      "_internalAuditor": {
         "Type": "user"
       },
       "requestCustomerName": {

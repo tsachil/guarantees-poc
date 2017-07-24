@@ -6,25 +6,25 @@
         "User"
       ],
       "Personas": {
-        "Bank": {
+        "_bank": {
           "Role": "Participant",
           "IsInitiator": true,
-          "PropertyMapping": "Bank"
+          "PropertyMapping": "_bank"
         },
-        "Customer": {
+        "_customer": {
           "Role": "Initiator",
-          "PropertyMapping": "Customer"
+          "PropertyMapping": "_customer"
         },
-        "Beneficiary": {
+        "_beneficiary": {
           "Role": "Participant",
-          "PropertyMapping": "Beneficiary"
+          "PropertyMapping": "_beneficiary"
         },
-        "InternalAuditor": {
+        "_internalAuditor": {
           "Role": "Participant",
-          "PropertyMapping": "InternalAuditor"
+          "PropertyMapping": "_internalAuditor"
         }
       },
-      "StateProperty": "requestState",
+      "StateProperty": "State",
       "StateMapping": {
         "Creating": 0,
         "Created": 1,
@@ -40,7 +40,7 @@
           "TargetState": "Created",
           "Style": "Success",
           "Actions": {
-            "Customer": {
+            "_customer": {
               "Create": {}
             }
           }
@@ -51,7 +51,7 @@
           "TargetState": "Submitted",
           "Style": "Success",
           "Actions": {
-            "Customer": {
+            "_customer": {
               "Submit": {}
             }
           }
@@ -61,11 +61,11 @@
           "TargetState": "Accepted",
           "Style": "Success",
           "Actions": {
-            "Bank": {
+            "_bank": {
               "Accept": {},
               "Reject": {}
             },
-            "Customer": {
+            "_customer": {
               "Withdrawal": {}
             }
           }
@@ -91,9 +91,21 @@
 
       },
       "Properties": {
-        "Bank": {
+        "_bank": {
           "DisplayName": "Bank",
-          "Description": "Bank Description"
+          "Description": "Bank Participant"
+        },
+        "_customer": {
+          "DisplayName": "Customer",
+          "Description": "Customer Participant"
+        },
+        "_beneficiary": {
+          "DisplayName": "Beneficiary",
+          "Description": "Beneficiary Participant"
+        },
+        "_internalAuditor": {
+          "DisplayName": "InternalAuditor",
+          "Description": "InternalAuditor Participant"
         }
       },
       "Constructor": {
