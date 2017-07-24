@@ -1,0 +1,87 @@
+{
+  "DigitalGuarantee": {
+    "Properties": {
+      "State": {
+        "Type": "state"
+      },
+      "_bank": {
+        "Type": "user"
+      },
+      "_customer": {
+        "Type": "user"
+      },
+      "_beneficiary": {
+        "Type": "user"
+      },
+      "_internalAuditor": {
+        "Type": "user"
+      },
+      "requestCustomerName": {
+        "Type": "string"
+      },
+      "requestBeneficiaryName": {
+        "Type": "string"
+      },
+
+      "requestStartDate": {
+        "Type": "string"
+      },
+      "requestEndDate": {
+        "Type": "string"
+      },
+      "requestAmount": {
+        "Type": "uint"
+      },
+      "requestComment": {
+        "Type": "string"
+      }
+
+    },
+    "Constructor": {
+      "bank": {
+        "Type": "user"
+      },
+      "customer": {
+        "Type": "user"
+      },
+      "beneficiary": {
+        "Type": "user"
+      }
+    },
+    "Actions": {
+      "changeRequest": {
+        "Parameters": {
+          "amount": {
+            "Type": "uint"
+          },
+          "endDate": {
+            "Type": "string"
+          },
+          "comment": {
+            "Type": "string"
+          }
+        }
+      },
+      "end": {
+        "Parameters": {
+          "comment": {
+            "Type": "string"
+          }
+        }
+      },
+      "bankIssue": {
+        "Parameters": {}
+      }
+    },
+    "Chains": {
+      "Ethereum": {
+        "Type": "Ethereum",
+        "Version": "1.0",
+        "Location": "DigitalGuarantee.sol",
+        "TypeName": "DigitalGuarantee",
+        "ActionOverrides": {},
+        "PropertyOverrides": {}
+      }
+    }
+  }
+}

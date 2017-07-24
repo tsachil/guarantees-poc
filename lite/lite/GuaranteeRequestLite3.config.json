@@ -1,0 +1,125 @@
+{
+  "GuaranteeRequestLite3": {
+    "Properties": {
+      "requestState": {
+        "Type": "state"
+      },
+      "Bank": {
+        "Type": "user"
+      },
+      "Customer": {
+        "Type": "user"
+      },
+      "Beneficiary": {
+        "Type": "user"
+      },
+      "InternalAuditor": {
+        "Type": "user"
+      },
+      "requestCustomerName": {
+        "Type": "string"
+      },
+      "requestBeneficiaryName": {
+        "Type": "string"
+      },
+      "requestCustomerAddress": {
+        "Type": "string"
+      },
+      "requestBeneficiaryAddress": {
+        "Type": "string"
+      },
+
+      "requestStartDate": {
+        "Type": "string"
+      },
+      "requestEndDate": {
+        "Type": "string"
+      },
+      "requestAmount": {
+        "Type": "uint"
+      },
+      "requestPurpose": {
+        "Type": "string"
+      },
+      "requestComment": {
+        "Type": "string"
+      }
+
+    },
+      "Constructor": {
+        "bank": {
+        "Type": "user"
+      },
+        "beneficiary": {
+        "Type": "user"
+      }
+    },
+    "Actions": {
+      "Submit": {
+        "Parameters": {
+          "amount": {
+            "Type": "uint"
+          },
+          "startDate": {
+            "Type": "string"
+          },
+          "endDate": {
+            "Type": "string"
+          },
+          "cname": {
+            "Type": "string"
+          },
+          "caddress": {
+            "Type": "string"
+          },
+          "bname": {
+            "Type": "string"
+          },
+          "baddress": {
+            "Type": "string"
+          },
+          "purpose": {
+            "Type": "string"
+          },
+          "wording": {
+            "Type": "string"
+          },
+          "comment": {
+            "Type": "string"
+          }
+        }
+      },
+      "Withdrawal": {
+        "Parameters": {
+          "comment": {
+            "Type": "string"
+          }
+        }
+      },
+      "Reject": {
+        "Parameters": {
+          "comment": {
+            "Type": "string"
+          }
+        }
+      },
+      "Accept": {
+        "Parameters": {
+          "comment": {
+            "Type": "string"
+          }
+        }
+      }
+    },
+    "Chains": {
+      "Ethereum": {
+        "Type": "Ethereum",
+        "Version": "1.0",
+        "Location": "GuaranteeRequestLite3.sol",
+        "TypeName": "GuaranteeRequestLite3",
+        "ActionOverrides": {},
+        "PropertyOverrides": {}
+      }
+    }
+  }
+}

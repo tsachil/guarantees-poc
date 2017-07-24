@@ -1,0 +1,111 @@
+{
+  "Contracts": {
+    "DigitalGuarantee": {
+      "InitiatingRoles": [
+        "Admin",
+        "User"
+      ],
+      "Personas": {
+        "Bank": {
+          "Role": "Initiator",
+          "IsInitiator": true,
+          "PropertyMapping": "_bank"
+        },
+        "Customer": {
+          "Role": "Participant",
+          "PropertyMapping": "_customer"
+        },
+        "Beneficiary": {
+          "Role": "Participant",
+          "PropertyMapping": "_beneficiary"
+        },
+        "InternalAuditor": {
+          "Role": "Participant",
+          "PropertyMapping": "_internalAuditor"
+        }
+      },
+      "StateProperty": "State",
+      "StateMapping": {
+        "Creating": 0,
+        "Created": 1,
+        "BankIssued": 2,
+        "BeneficiaryChangeMade": 3,
+        "Ended": 4
+      },
+      "States": {
+        "Creating": {
+          "PercentComplete": 0,
+          "IsInitiatingState": true,
+          "TargetState": "Created",
+          "Style": "Success",
+          "Actions": {
+            "Bank": {
+              "Create": {}
+            }
+          }
+        },
+        "Created": {
+          "PercentComplete": 10,
+          "IsDefaultState": true,
+          "TargetState": "BankIssued",
+          "Style": "Success",
+          "Actions": {
+            "Bank": {
+              "bankIssue": {}
+            }
+          }
+        },
+        "BankIssued": {
+          "PercentComplete": 50,
+          "TargetState": "BeneficiaryChangeMade",
+          "Style": "Success",
+          "Actions": {
+            "Beneficiary": {
+              "ChangeRequest": {}
+            },
+            "Bank": {
+              "End": {}
+            }
+          }
+        },
+        "BeneficiaryChangeMade": {
+          "PercentComplete": 90,
+          "Style": "Success",
+          "Actions": {
+            "Bank": {
+              "bankIssue": {},
+              "End": {}
+            }
+          }
+        },
+        "Ended": {
+          "PercentComplete": 100,
+          "Style": "Success",
+          "Actions": {}
+        }
+
+      },
+      "Properties": {
+        "Bank": {
+          "DisplayName": "Bank",
+          "Description": "Bank Description"
+        }
+      },
+      "Constructor": {
+        "DisplayName": "Create Digital Guarantee",
+        "Description": "Description of Digital Guarantee"
+      },
+      "Actions": {
+        "end": {
+          "DisplayName": "Mark as ended"
+        },
+        "bankIssue": {
+          "DisplayName": "Mark as issued by the bank"
+        },
+        "changeRequest": {
+          "DisplayName": "Mark as requested change"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "GuaranteeRequestStub": {
+    "Properties": {
+      "State": {
+        "Type": "state"
+      },
+      "Bank": {
+        "Type": "user"
+      },
+      "Customer": {
+        "Type": "user"
+      },
+      "Beneficiary": {
+        "Type": "user"
+      },
+      "InternalAuditor": {
+        "Type": "user"
+      },
+      "CustomerName": {
+        "Type": "string"
+      },
+      "BeneficiaryName": {
+        "Type": "string"
+      },
+
+      "StartDate": {
+        "Type": "string"
+      },
+      "EndDate": {
+        "Type": "string"
+      },
+      "Amount": {
+        "Type": "uint"
+      },
+      "Purpose": {
+        "Type": "string"
+      },
+      "Comment": {
+        "Type": "string"
+      }
+
+    },
+    "Constructor": {},
+    "Actions": {
+      "Submit": {
+        "Parameters": {
+          "amount": {
+            "Type": "uint"
+          },
+          "startDate": {
+            "Type": "string"
+          },
+          "endDate": {
+            "Type": "string"
+          },
+          "cname": {
+            "Type": "string"
+          },
+          "caddress": {
+            "Type": "user"
+          },
+          "bname": {
+            "Type": "string"
+          },
+          "baddress": {
+            "Type": "user"
+          },
+          "purpose": {
+            "Type": "string"
+          },
+          "wording": {
+            "Type": "string"
+          },
+          "comment": {
+            "Type": "string"
+          }
+        }
+      },
+      "Withdrawal": {
+        "Parameters": {
+          "comment": {
+            "Type": "string"
+          }
+        }
+      },
+      "Reject": {
+        "Parameters": {
+          "comment": {
+            "Type": "string"
+          }
+        }
+      },
+      "Accept": {
+        "Parameters": {
+          "comment": {
+            "Type": "string"
+          }
+        }
+      }
+    },
+    "Chains": {
+      "Ethereum": {
+        "Type": "Ethereum",
+        "Version": "1.0",
+        "Location": "GuaranteeRequestStub.sol",
+        "TypeName": "GuaranteeRequestStub",
+        "ActionOverrides": {},
+        "PropertyOverrides": {}
+      }
+    }
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "GuaranteeRequest": {
+    "Properties": {
+      "state": {
+        "Type": "state"
+      },
+      "_bank": {
+        "Type": "user"
+      },
+      "_customer": {
+        "Type": "user"
+      },
+      "_beneficiary": {
+        "Type": "user"
+      },
+      "_internalAuditor": {
+        "Type": "user"
+      },
+      "requestCustomerName": {
+        "Type": "string"
+      },
+      "requestBeneficiaryName": {
+        "Type": "string"
+      },
+
+      "requestStartDate": {
+        "Type": "string"
+      },
+      "requestEndDate": {
+        "Type": "string"
+      },
+      "requestAmount": {
+        "Type": "uint"
+      },
+      "requestPurpose": {
+        "Type": "string"
+      },
+      "requestComment": {
+        "Type": "string"
+      }
+
+    },
+      "Constructor": {
+      "bank": {
+        "Type": "user"
+      },
+      "beneficiary": {
+        "Type": "user"
+      }
+    },
+    "Actions": {
+      "submit": {
+        "Parameters": {
+          "amount": {
+            "Type": "uint"
+          },
+          "startDate": {
+            "Type": "string"
+          },
+          "endDate": {
+            "Type": "string"
+          },
+          "custometrName": {
+            "Type": "string"
+          },
+          "customerAddress": {
+            "Type": "user"
+          },
+          "beneficiaryName": {
+            "Type": "string"
+          },
+          "beneficiaryAddress": {
+            "Type": "user"
+          },
+          "purpose": {
+            "Type": "string"
+          },
+          "wording": {
+            "Type": "string"
+          },
+          "comment": {
+            "Type": "string"
+          }
+        }
+      },
+      "withdrawal": {
+        "Parameters": {
+          "comment": {
+            "Type": "string"
+          }
+        }
+      },
+      "reject": {
+        "Parameters": {
+          "comment": {
+            "Type": "string"
+          }
+        }
+      },
+      "accept": {
+        "Parameters": {
+          "comment": {
+            "Type": "string"
+          }
+        }
+      }
+    },
+    "Chains": {
+      "Ethereum": {
+        "Type": "Ethereum",
+        "Version": "1.0",
+        "Location": "GuaranteeRequest.sol",
+        "TypeName": "GuaranteeRequest",
+        "ActionOverrides": {},
+        "PropertyOverrides": {}
+      }
+    }
+  }
+}

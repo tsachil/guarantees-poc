@@ -1,0 +1,82 @@
+{
+  "GuaranteeInternal": {
+    "Properties": {
+      "State": {
+        "Type": "state"
+      },
+      "_bank": {
+        "Type": "user"
+      },
+      "_customer": {
+        "Type": "user"
+      },
+      "_beneficiary": {
+        "Type": "user"
+      },
+      "_internalAuditor": {
+        "Type": "user"
+      },
+      "requestCustomerName": {
+        "Type": "string"
+      },
+      "requestBeneficiaryName": {
+        "Type": "string"
+      },
+
+      "requestStartDate": {
+        "Type": "string"
+      },
+      "requestEndDate": {
+        "Type": "string"
+      },
+      "requestAmount": {
+        "Type": "uint"
+      },
+      "requestComment": {
+        "Type": "string"
+      }
+
+    },
+    "Constructor": {
+      "bank": {
+        "Type": "user"
+      },
+      "customer": {
+        "Type": "user"
+      }
+    },
+    "Actions": {
+       "handle": {
+        "Parameters": {
+          "comment": {
+            "Type": "string"
+          }
+        }
+      },
+      "issue": {
+        "Parameters": {
+          "comment": {
+            "Type": "string"
+          }
+        }
+      },
+      "reject": {
+        "Parameters": {
+          "comment": {
+            "Type": "string"
+          }
+        }
+      }
+    },
+    "Chains": {
+      "Ethereum": {
+        "Type": "Ethereum",
+        "Version": "1.0",
+        "Location": "GuaranteeInternal.sol",
+        "TypeName": "GuaranteeInternal",
+        "ActionOverrides": {},
+        "PropertyOverrides": {}
+      }
+    }
+  }
+}

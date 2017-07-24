@@ -1,0 +1,119 @@
+{
+  "Contracts": {
+    "GuaranteeRequest": {
+      "InitiatingRoles": [
+        "Admin",
+        "User"
+      ],
+      "Personas": {
+        "Bank": {
+          "Role": "Participant",
+          "IsInitiator": true,
+          "PropertyMapping": "_bank"
+        },
+        "Customer": {
+          "Role": "Initiator",
+          "PropertyMapping": "_customer"
+        },
+        "Beneficiary": {
+          "Role": "Participant",
+          "PropertyMapping": "_beneficiary"
+        },
+        "InternalAuditor": {
+          "Role": "Participant",
+          "PropertyMapping": "_internalAuditor"
+        }
+      },
+      "StateProperty": "State",
+      "StateMapping": {
+        "Creating": 0,
+        "Created": 1,
+        "Submitted": 2,
+        "Withdrawaled": 3,
+        "Accepted": 4,
+        "Rejected": 5
+      },
+      "States": {
+        "Creating": {
+          "PercentComplete": 0,
+          "IsInitiatingState": true,
+          "TargetState": "Created",
+          "Style": "Success",
+          "Actions": {
+            "Customer": {
+              "Create": {}
+            }
+          }
+        },
+        "Created": {
+          "PercentComplete": 10,
+          "IsDefaultState": true,
+          "TargetState": "Submitted",
+          "Style": "Success",
+          "Actions": {
+            "Customer": {
+              "submit": {}
+            }
+          }
+        },
+        "Submitted": {
+          "PercentComplete": 50,
+          "TargetState": "Accepted",
+          "Style": "Success",
+          "Actions": {
+            "Bank": {
+              "accept": {},
+              "reject": {}
+            },
+            "Customer": {
+              "withdrawal": {}
+            }
+          }
+        },
+        "Withdrawaled": {
+          "PercentComplete": 75,
+          "Style": "Success",
+          "Actions": {}
+
+        },
+        "Accepted": {
+          "PercentComplete": 100,
+          "Style": "Success",
+          "Actions": {}
+
+        },
+        "Rejected": {
+          "PercentComplete": 100,
+          "Style": "Success",
+          "Actions": {}
+
+        }
+
+      },
+      "Properties": {
+        "Bank": {
+          "DisplayName": "Bank",
+          "Description": "Bank Description"
+        }
+      },
+      "Constructor": {
+        "DisplayName": "Create Guarantee Request",
+        "Description": "Description of Guarantee Request"
+      },
+      "Actions": {
+        "submit": {
+          "DisplayName": "Mark as submitted"
+        },
+        "accept": {
+          "DisplayName": "Mark as accepted"
+        },
+        "reject": {
+          "DisplayName": "Mark as rejected"
+        },
+        "withdrawal": {
+          "DisplayName": "Mark as withdrawaled"
+        }
+      }
+    }
+  }
+}

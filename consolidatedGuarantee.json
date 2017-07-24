@@ -1,0 +1,546 @@
+{
+    "UI": {
+   "Contracts": {
+        "GuaranteeRequest": {
+            "InitiatingRoles": [
+                "Admin",
+                "User"
+            ],
+            "Personas": {
+                "Customer": {
+                    "Role": "Initiator",
+                    "IsInitiator": true,
+                    "PropertyMapping": "customer"
+                },
+                "Bank": {
+                    "Role": "Participant",
+                    "PropertyMapping": "bank"
+                }
+            },
+            "StateProperty": "State",
+            "StateMapping": {
+                "Created": 0,
+                "Submitted": 1,
+                "Accepted": 2,
+                "Rejected": 3,
+                "Withdrawal": 4
+            },
+            "States": {
+                "Created": {
+                    "PercentComplete": 0,
+                    "IsInitiatingState" : true,
+                    "TargetState": "Active",
+                    "Style": "Success",
+                    "Actions": {
+                        "Customer": {
+                            "Withdrawal": {},
+                            "Submit": {}
+                        }
+                    }
+                },
+                "Submitted": {
+                    "PercentComplete": 20,
+                    "IsDefaultState" : true,
+                    "TargetState": "Accept",
+                    "Style": "Success",
+                    "Actions": {
+                        "Bank": {
+                          "Reject": {
+                            "DisplayName": "Reject",
+                            "Theme": { }
+                          },
+                          "Accept": {
+                            "DisplayName": "Accept",
+                            "Theme": { }
+                          }
+                        },
+                        "Customer": {
+                            "Withdrawal": {}
+                        }
+                    }
+                },
+                "Accepted": {
+                    "PercentComplete": 30,
+                    "Style": "Success",
+                    "Actions": { }
+                },
+                "Rejected": {
+                    "PercentComplete": 75,
+                    "Style": "Success",
+                    "Actions": {}
+                },
+              "Withdrawal": {
+                "PercentComplete": 75,
+                "Style": "Success",
+                "Actions": { }
+                }
+            },
+            "Properties": {
+                "Owner": {
+                    "DisplayName": "Owner",
+                    "Description": "Owner Description"
+                }
+            },
+            "Constructor": {
+                "DisplayName": "Create GuaranteeRequest",
+                "Description": "Description of a request"
+            }
+        },
+        "GuaranteeInternal": {
+            "InitiatingRoles": [
+                "Admin",
+                "User"
+            ],
+            "Personas": {
+                "Bank": {
+                    "Role": "Initiator",
+                    "IsInitiator": true,
+                    "PropertyMapping": "bank"
+                }
+            },
+            "StateProperty": "State",
+            "StateMapping": {
+                "Handling": 0,
+                "Issued": 1,
+                "Rejected": 2
+            },
+            "States": {
+                "Handling": {
+                    "PercentComplete": 0,
+                    "IsInitiatingState" : true,
+                    "TargetState": "Active",
+                    "Style": "Success",
+                    "Actions": {
+                        "Bank": {
+                            "Issue": {},
+                            "Reject": {}
+                        }
+                    }
+                },
+                "Issued": {
+                    "PercentComplete": 100,
+                    "IsDefaultState" : true,
+                    "TargetState": "Issue",
+                    "Style": "Success",
+                    "Actions": { }
+                },
+                "Rejected": {
+                    "PercentComplete": 75,
+                    "Style": "Success",
+                    "Actions": {}
+                }
+            },
+            "Properties": {
+                "Owner": {
+                    "DisplayName": "Owner",
+                    "Description": "Owner Description"
+                }
+            },
+            "Constructor": {
+                "DisplayName": "Create GuaranteeRequest",
+                "Description": "Description of a request"
+            }
+        },
+        "DigitalGuarantee": {
+            "InitiatingRoles": [
+                "Admin",
+                "User"
+            ],
+            "Personas": {
+                "Bank": {
+                    "Role": "Initiator",
+                    "IsInitiator": true,
+                    "PropertyMapping": "bank"
+                },
+                "Beneficiary": {
+                    "Role": "Participant",
+                    "PropertyMapping": "beneficiary"
+                }               
+            },
+            "StateProperty": "State",
+            "StateMapping": {
+                "BankIssued": 0,
+                "BeneficiaryChangerequest": 1,
+                "endded": 2
+            },
+            "States": {
+                "BeneficiaryChangerequest": {
+                    "PercentComplete": 0,
+                    "IsInitiatingState" : true,
+                    "TargetState": "Active",
+                    "Style": "Success",
+                    "Actions": {
+                        "Bank": {
+                            "ended": {},
+                            "BankIssued": {}
+                        }
+                    }
+                },
+                "BankIssued": {
+                    "PercentComplete": 0,
+                    "IsDefaultState" : true,
+                    "TargetState": "BankIssued",
+                    "Style": "Success",
+                    "Actions": { 
+                        "BeneficiaryChangerequest": {},
+                        "ended": {}
+                    }
+                },
+                "ended": {
+                    "PercentComplete": 75,
+                    "Style": "Success",
+                    "Actions": {}
+                }
+            },
+            "Properties": {
+                "Owner": {
+                    "DisplayName": "Owner",
+                    "Description": "Owner Description"
+                }
+            },
+            "Constructor": {
+                "DisplayName": "Create GuaranteeRequest",
+                "Description": "Description of a request"
+            }
+        }
+    },
+    "Contracts": {
+        "GuaranteeRequest": {
+        "Properties": {
+            "RequestState": {
+                "Type": "uint"
+            },
+            "Beneficiary": {
+                "Type": "user"
+            },
+            "Customer": {
+                "Type": "user"
+            },
+            "Bank": {
+                "Type": "user"
+            },
+            "InternalAuditor": {
+                "Type": "user"
+            },
+            "amount": {
+                "Type": "uint"
+            },
+            "startDate": {
+                "Type": "string"
+            },
+            "endDate": {
+                "Type": "string"
+            },
+            "customerName": {
+                "Type": "string"
+            },
+            "beneficiaryName": {
+                "Type": "string"
+            }
+        },
+
+      "Constructor": [
+        ],
+       "Actions":{
+            
+            "Reject": {
+                "Parameters": {
+                  "comment": {
+                    "Type": "string"
+                  }
+                }
+              },
+            "Accept": {
+                "Parameters": {
+                  "comment": {
+                    "Type": "string"
+                  }
+                }
+              },
+            "Withdrawal": {
+                "Parameters": {
+                  "comment": {
+                    "Type": "string"
+                  }
+                }
+              },
+            "Submit": {
+                "Parameters": {
+                    "amount": {
+                        "Type": "money"
+                    },
+                    "startDate": {
+                        "Type": "date"
+                    },
+                    "endDate": {
+                        "Type": "date"
+                    },
+                    "clientName": {
+                        "Type": "string"
+                    },
+                    "clientAddress": {
+                        "Type": "string"
+                    },
+                    "beneficiaryName": {
+                        "Type": "string"
+                    },
+                    "beneficiaryAddress": {
+                        "Type": "string"
+                    },
+                    "purpose": {
+                        "Type": "string"
+                    },
+                    "wordingType": {
+                        "Type": "string",
+                        "Constraints": [ "standard", "uploaded-by-client", "uploaded-by-beneficiary" ]
+                    },
+                    "wording": {
+                        "Type": "string"
+                    }
+
+                }
+              }
+            
+
+            },
+            "Chains": {
+              "Ethereum": {
+                "Type": "Ethereum",
+                "Version": "1.0",
+                "Location": "guarantees.sol",
+                "TypeName": "Guarantees",
+                "ActionOverrides": { },
+                "PropertyOverrides": { }
+              }
+            }
+        },
+                "GuaranteeInternal": {
+        "Properties": {
+            "RequestState": {
+                "Type": "uint"
+            },
+            "Beneficiary": {
+                "Type": "user"
+            },
+            "Customer": {
+                "Type": "user"
+            },
+            "Bank": {
+                "Type": "user"
+            },
+            "amount": {
+                "Type": "uint"
+            },
+            "startDate": {
+                "Type": "string"
+            },
+            "endDate": {
+                "Type": "string"
+            },
+            "customerName": {
+                "Type": "string"
+            },
+            "beneficiaryName": {
+                "Type": "string"
+            }
+        },
+
+      "Constructor": [
+        ],
+       "Actions":{
+            
+            "Reject": {
+                "Parameters": {
+                  "comment": {
+                    "Type": "string"
+                  }
+                }
+              },
+            "Accept": {
+                "Parameters": {
+                  "comment": {
+                    "Type": "string"
+                  }
+                }
+              },
+            "Withdrawal": {
+                "Parameters": {
+                  "comment": {
+                    "Type": "string"
+                  }
+                }
+              },
+            "Submit": {
+                "Parameters": {
+                    "amount": {
+                        "Type": "money"
+                    },
+                    "startDate": {
+                        "Type": "date"
+                    },
+                    "endDate": {
+                        "Type": "date"
+                    },
+                    "clientName": {
+                        "Type": "string"
+                    },
+                    "clientAddress": {
+                        "Type": "string"
+                    },
+                    "beneficiaryName": {
+                        "Type": "string"
+                    },
+                    "beneficiaryAddress": {
+                        "Type": "string"
+                    },
+                    "purpose": {
+                        "Type": "string"
+                    },
+                    "wordingType": {
+                        "Type": "string",
+                        "Constraints": [ "standard", "uploaded-by-client", "uploaded-by-beneficiary" ]
+                    },
+                    "wording": {
+                        "Type": "string"
+                    },
+                    "paymentSchedule": {
+                        "Type": "string"
+                    },
+                    "interestBaseCalculation": {
+                        "Type": "uint"
+                    },
+                    "paymentFrequency": {
+                        "Type": "string"
+                    },
+                    "paymentStartDate": {
+                        "Type": "date"
+                    },
+                    "numberOfPayments": {
+                        "Type": "uint"
+                    },
+                    "commission": {
+                        "Type": "uint"
+                    },
+                    "paymentAmount": {
+                        "Type": "money"
+                    },
+                    "accountToDebit": {
+                        "Type": "uint"
+                    },
+                    "fees": {
+                        "Type": "uint"
+                    },
+                    "approvalDetails": {
+                        "Type": "string"
+                    },
+                    "lineOfCredit": {
+                        "Type": "string",
+                        "Constraints": [ "yes", "no", "notSufficient" ]
+                    },
+                    "lineOfCreditApprovalDetails": {
+                        "Type": "string"
+                    },
+                    "legalCouncil": {
+                        "Type": "string",
+                        "Constraints": [ "yes", "no" ]
+                    },
+                    "legalCouncilApprovalDetails": {
+                        "Type": "string"
+                    }
+                }
+              }
+            
+
+            },
+            "Chains": {
+              "Ethereum": {
+                "Type": "Ethereum",
+                "Version": "1.0",
+                "Location": "guarantees.sol",
+                "TypeName": "Guarantees",
+                "ActionOverrides": { },
+                "PropertyOverrides": { }
+              }
+            }
+        },
+                "DigitalGuarantee": {
+        "Properties": {
+            "RequestState": {
+                "Type": "uint"
+            },
+            "Beneficiary": {
+                "Type": "user"
+            },
+            "Customer": {
+                "Type": "user"
+            },
+            "Bank": {
+                "Type": "user"
+            },
+            "amount": {
+                "Type": "uint"
+            },
+            "startDate": {
+                "Type": "string"
+            },
+            "endDate": {
+                "Type": "string"
+            },
+            "customerName": {
+                "Type": "string"
+            },
+            "beneficiaryName": {
+                "Type": "string"
+            }
+        },
+
+      "Constructor": [
+        ],
+       "Actions":{
+            
+            "issue": {
+                "Parameters": {
+                  "comment": {
+                    "Type": "string"
+                  }
+                }
+              },
+            "end": {
+                "Parameters": {
+                  "comment": {
+                    "Type": "string"
+                  }
+                }
+              },
+            "changeRequest": {
+                "Parameters": {
+                    "amount": {
+                        "Type": "money"
+                    },
+                    "endDate": {
+                        "Type": "date"
+                    },
+                    "comment": {
+                        "Type": "string"
+                    }
+                }
+              }
+            
+
+            },
+            "Chains": {
+              "Ethereum": {
+                "Type": "Ethereum",
+                "Version": "1.0",
+                "Location": "guarantees.sol",
+                "TypeName": "Guarantees",
+                "ActionOverrides": { },
+                "PropertyOverrides": { }
+              }
+            }
+        }
+
+
+        }
+    }
+}

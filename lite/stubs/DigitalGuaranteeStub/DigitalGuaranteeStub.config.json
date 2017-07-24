@@ -1,0 +1,87 @@
+{
+  "DigitalGuaranteeStub": {
+    "Properties": {
+      "State": {
+        "Type": "state"
+      },
+      "Bank": {
+        "Type": "user"
+      },
+      "Customer": {
+        "Type": "user"
+      },
+      "Beneficiary": {
+        "Type": "user"
+      },
+      "InternalAuditor": {
+        "Type": "user"
+      },
+      "CustomerName": {
+        "Type": "string"
+      },
+      "BeneficiaryName": {
+        "Type": "string"
+      },
+
+      "StartDate": {
+        "Type": "string"
+      },
+      "EndDate": {
+        "Type": "string"
+      },
+      "Amount": {
+        "Type": "uint"
+      },
+      "Comment": {
+        "Type": "string"
+      }
+
+    },
+    "Constructor": {
+      "bank": {
+        "Type": "user"
+      },
+      "customer": {
+        "Type": "user"
+      },
+      "beneficiary": {
+        "Type": "user"
+      }
+    },
+    "Actions": {
+      "ChangeRequest": {
+        "Parameters": {
+          "amount": {
+            "Type": "uint"
+          },
+          "endDate": {
+            "Type": "string"
+          },
+          "comment": {
+            "Type": "string"
+          }
+        }
+      },
+      "End": {
+        "Parameters": {
+          "comment": {
+            "Type": "string"
+          }
+        }
+      },
+      "Issue": {
+        "Parameters": {}
+      }
+    },
+    "Chains": {
+      "Ethereum": {
+        "Type": "Ethereum",
+        "Version": "1.0",
+        "Location": "DigitalGuaranteeStub.sol",
+        "TypeName": "DigitalGuaranteeStub",
+        "ActionOverrides": {},
+        "PropertyOverrides": {}
+      }
+    }
+  }
+}

@@ -1,0 +1,151 @@
+{
+    "UI": {
+   "Contracts": {
+        "DigitalGuarantee": {
+            "InitiatingRoles": [
+                "Admin",
+                "User"
+            ],
+            "Personas": {
+                "Bank": {
+                    "Role": "Initiator",
+                    "IsInitiator": true,
+                    "PropertyMapping": "Bank"
+                },
+                "Beneficiary": {
+                    "Role": "Participant",
+                    "PropertyMapping": "Beneficiary"
+                }               
+            },
+            "StateProperty": "State",
+            "StateMapping": {
+                "BankIssued": 0,
+                "BeneficiaryChangerequest": 1,
+                "endded": 2
+            },
+            "States": {
+                "BeneficiaryChangerequest": {
+                    "PercentComplete": 0,
+                    "IsInitiatingState" : true,
+                    "TargetState": "Active",
+                    "Style": "Success",
+                    "Actions": {
+                        "Bank": {
+                            "ended": {},
+                            "BankIssued": {}
+                        }
+                    }
+                },
+                "BankIssued": {
+                    "PercentComplete": 0,
+                    "IsDefaultState" : true,
+                    "TargetState": "UnderReview",
+                    "Style": "Success",
+                    "Actions": { 
+                        "BeneficiaryChangerequest": {},
+                        "ended": {}
+                    }
+                },
+                "ended": {
+                    "PercentComplete": 75,
+                    "Style": "Success",
+                    "Actions": {}
+                },
+            },
+            "Properties": {
+                "Owner": {
+                    "DisplayName": "Owner",
+                    "Description": "Owner Description"
+                }
+            },
+            "Constructor": {
+                "DisplayName": "Create GuaranteeRequest",
+                "Description": "Description of a request"
+            }
+        }
+    },
+    "Contracts": {
+        "DigitalGuarantee": {
+        "Properties": {
+            "RequestState": {
+                "Type": "uint"
+            },
+            "Beneficiary": {
+                "Type": "user"
+            },
+            "Customer": {
+                "Type": "user"
+            },
+            "Bank": {
+                "Type": "user"
+            },
+            "InternalAuditor": {
+                "Type": "user"
+            },
+            "amount": {
+                "Type": "uint"
+            },
+            "startDate": {
+                "Type": "string"
+            },
+            "endDate": {
+                "Type": "string"
+            },
+            "customerName": {
+                "Type": "string"
+            },
+            "beneficiaryName": {
+                "Type": "string"
+            }
+        },
+
+      "Constructor": [
+        ],
+       "Actions":{
+            
+            "issue": {
+                "Parameters": {
+                  "comment": {
+                    "Type": "string"
+                  }
+                }
+              },
+            "end": {
+                "Parameters": {
+                  "comment": {
+                    "Type": "string"
+                  }
+                }
+              },
+            "SchangeRequest": {
+                "Parameters": {
+                    "amount": {
+                        "Type": "money"
+                    },
+                    "endDate": {
+                        "Type": "date"
+                    },
+                    "comment": {
+                        "Type": "string"
+                    }
+                }
+              }
+            
+
+            },
+            "Chains": {
+              "Ethereum": {
+                "Type": "Ethereum",
+                "Version": "1.0",
+                "Location": "guarantees.sol",
+                "TypeName": "Guarantees",
+                "ActionOverrides": { },
+                "PropertyOverrides": { }
+              }
+            }
+        }
+
+
+        }
+    }
+}
