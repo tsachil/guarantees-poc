@@ -1,0 +1,82 @@
+{
+  "GuaranteeInternalStub": {
+    "Properties": {
+      "State": {
+        "Type": "state"
+      },
+      "Bank": {
+        "Type": "user"
+      },
+      "Customer": {
+        "Type": "user"
+      },
+      "Beneficiary": {
+        "Type": "user"
+      },
+      "InternalAuditor": {
+        "Type": "user"
+      },
+      "CustomerName": {
+        "Type": "string"
+      },
+      "BeneficiaryName": {
+        "Type": "string"
+      },
+
+      "StartDate": {
+        "Type": "string"
+      },
+      "EndDate": {
+        "Type": "string"
+      },
+      "Amount": {
+        "Type": "uint"
+      },
+      "Comment": {
+        "Type": "string"
+      }
+
+    },
+    "Constructor": {
+      "bank": {
+        "Type": "user"
+      },
+      "customer": {
+        "Type": "user"
+      }
+    },
+    "Actions": {
+       "Handle": {
+        "Parameters": {
+          "comment": {
+            "Type": "string"
+          }
+        }
+      },
+      "Issue": {
+        "Parameters": {
+          "comment": {
+            "Type": "string"
+          }
+        }
+      },
+      "Reject": {
+        "Parameters": {
+          "comment": {
+            "Type": "string"
+          }
+        }
+      }
+    },
+    "Chains": {
+      "Ethereum": {
+        "Type": "Ethereum",
+        "Version": "1.0",
+        "Location": "GuaranteeInternalStub.sol",
+        "TypeName": "GuaranteeInternalStub",
+        "ActionOverrides": {},
+        "PropertyOverrides": {}
+      }
+    }
+  }
+}

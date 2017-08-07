@@ -1,0 +1,60 @@
+{
+    "Contracts": {
+        "LexLeaf": {
+            "InitiatingRoles": [
+                "Admin",
+                "User"
+            ],
+            "Personas": {
+                "Owner": {
+                    "Role": "Initiator",
+                    "IsInitiator": true,
+                    "PropertyMapping": "Owner"
+                },
+                "Changer": {
+                    "Role": "Participant",
+                    "PropertyMapping": "Changer"
+                }
+            },
+            "StateProperty": "State",
+            "StateMapping": {
+                "Active": 0,
+                "Modified": 1
+            },
+            "States": {
+                "Active": {
+                    "PercentComplete": 20,
+                    "IsInitiatingState": true,
+                    "IsDefaultState": true,
+                    "TargetState": "ModifyData",
+                    "Style": "Success",
+                    "Actions": {
+                        "Changer": {
+                            "ModifyData": {}
+                        }
+                    }
+                },
+                "Modified": {
+                    "PercentComplete": 100,
+                    "Style": "Success",
+                    "Actions": {
+                        "Changer": {
+                            "ModifyData": {}
+                        }
+                    }
+                }
+            },
+            "Properties": {
+                "Owner": {
+                    "DisplayName": "Owner",
+                    "Description": "Owner Description"
+                }
+            },
+            "Constructor": {
+                "DisplayName": "Create LexLeaf",
+                "Description": "Description of asset transfer"
+            },
+            "Actions": {}
+        }
+    }
+}

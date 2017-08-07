@@ -1,0 +1,45 @@
+{
+    "LexLeaf": {
+        "Properties": {
+            "State": {
+                "Type": "state"
+            },
+            "Owner": {
+                "Type": "user"
+            },
+            "Data": {
+                "Type": "string"
+            },
+            "Changer": {
+                "Type": "user"
+            }
+        },
+        "Constructor": {
+            "data": {
+                "Type": "string"
+            },
+            "changer": {
+                "Type": "user"
+            }
+        },
+        "Actions": {
+            "ModifyData": {
+                "Parameters": {
+                    "data": {
+                        "Type": "string"
+                    }
+                }
+            }
+        },
+        "Chains": {
+            "Ethereum": {
+                "Type": "Ethereum",
+                "Version": "1.0",
+                "Location": "LexLeaf.sol",
+                "TypeName": "LexLeaf",
+                "ActionOverrides": {},
+                "PropertyOverrides": {}
+            }
+        }
+    }
+}

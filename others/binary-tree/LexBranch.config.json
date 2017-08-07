@@ -1,0 +1,85 @@
+{
+    "LexBranch": {
+        "Properties": {
+            "State": {
+                "Type": "state"
+            },
+            "Owner": {
+                "Type": "user"
+            },
+            "Data": {
+                "Type": "string"
+            },
+            "Changer": {
+                "Type": "user"
+            },
+            "LeftLeaf": {
+                "Type": "address"
+            },
+            "RightLeaf": {
+                "Type": "address"
+            }
+        },
+        "Constructor": {
+            "data": {
+                "Type": "string"
+            },
+            "changer": {
+                "Type": "user"
+            }
+        },
+        "Actions": {
+            "ModifyData": {
+                "Parameters": {
+                    "data": {
+                        "Type": "string"
+                    }
+                }
+            },
+            "AddLeft": {
+                "Parameters": {
+                    "data": {
+                        "Type": "string"
+                    },
+                    "changer": {
+                        "Type": "user"
+                    }
+                }
+            },
+            "AddRight": {
+                "Parameters": {
+                    "data": {
+                        "Type": "string"
+                    },
+                    "changer": {
+                        "Type": "user"
+                    }
+                }
+            },
+            "ModifyLeft": {
+                "Parameters": {
+                    "data": {
+                        "Type": "string"
+                    }
+                }
+            },
+            "ModifyRight": {
+                "Parameters": {
+                    "data": {
+                        "Type": "string"
+                    }
+                }
+            }
+        },
+        "Chains": {
+            "Ethereum": {
+                "Type": "Ethereum",
+                "Version": "1.0",
+                "Location": "LexBranch.sol",
+                "TypeName": "LexBranch",
+                "ActionOverrides": {},
+                "PropertyOverrides": {}
+            }
+        }
+    }
+}

@@ -1,0 +1,76 @@
+{
+    "Contracts": {
+        "LexBranch": {
+            "InitiatingRoles": [
+                "Admin",
+                "User"
+            ],
+            "Personas": {
+                "Owner": {
+                    "Role": "Initiator",
+                    "IsInitiator": true,
+                    "PropertyMapping": "Owner"
+                },
+                "Changer": {
+                    "Role": "Participant",
+                    "PropertyMapping": "Changer"
+                }
+            },
+            "StateProperty": "State",
+            "StateMapping": {
+                "Active": 0,
+                "LeftLeafSpecified": 1,
+                "RightLeafSpecified": 2
+            },
+            "States": {
+                "Active": {
+                    "PercentComplete": 20,
+                    "IsInitiatingState": true,
+                    "IsDefaultState": true,
+                    "TargetState": "LeftLeafSpecified",
+                    "Style": "Success",
+                    "Actions": {
+                        "Changer": {
+                            "AddLeft": {},
+                            "ModifyData": {}
+                        }
+                    }
+                },
+                "LeftLeafSpecified": {
+                    "PercentComplete": 60,
+                    "TargetState": "RightLeafSpecified",
+                    "Style": "Success",
+                    "Actions": {
+                        "Changer": {
+                            "ModifyLeft": {},
+                            "AddRight": {},
+                            "ModifyData": {}
+                        }
+                    }
+                },
+                "RightLeafSpecified": {
+                    "PercentComplete": 100,
+                    "Style": "Success",
+                    "Actions": {
+                        "Changer": {
+                            "ModifyLeft": {},
+                            "ModifyRight": {},
+                            "ModifyData": {}
+                        }
+                    }
+                }
+            },
+            "Properties": {
+                "Owner": {
+                    "DisplayName": "Owner",
+                    "Description": "Owner Description"
+                }
+            },
+            "Constructor": {
+                "DisplayName": "Create LexBranch",
+                "Description": "Description of LexBranch"
+            },
+            "Actions": {}
+        }
+    }
+}

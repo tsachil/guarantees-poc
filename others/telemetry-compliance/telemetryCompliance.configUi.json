@@ -1,0 +1,121 @@
+{
+	"Contracts": {
+		"TelemetryCompliance": {
+			"InitiatingRoles": [
+				"Admin",
+				"User"
+			],
+			"Personas": {
+				"InitiatingCounterparty": {
+					"Role": "Initiator",
+					"IsInitiator": true,
+					"PropertyMapping": "InitiatingCounterparty"
+				},
+				"Counterparty": {
+					"Role": "Participant",
+					"PropertyMapping": "Counterparty"
+				},
+				"Device": {
+					"Role": "Participant",
+					"PropertyMapping": "Device"
+				},
+				"Owner": {
+					"Role": "Participant",
+					"PropertyMapping": "Owner"
+				},
+				"Observer": {
+					"Role": "Participant",
+					"PropertyMapping": "Observer"
+				}
+			},
+			"StateProperty": "State",
+			"StateMapping": {
+				"Creating": 0,
+				"Created": 1,
+				"InTransit": 2,
+				"Completed": 3,
+				"OutOfCompliance": 4
+			},
+			"States": {
+				"Creating": {
+					"PercentComplete": 0,
+					"IsInitiatingState": true,
+					"TargetState": "Created",
+					"Style": "Success",
+					"Actions": {
+						"InitiatingCounterparty": {
+							"Create": {}
+						}
+					}
+				},
+				"Created": {
+					"PercentComplete": 10,
+					"TargetState": "InTransit",
+					"Style": "Success",
+					"Actions": {
+						"InitiatingCounterparty": {
+							"TransferResponsibility": {
+								"DisplayName": "TransferResponsibility",
+								"Theme": {}
+							}
+						},
+						"Device": {
+							"IngestTelemetry": {
+								"DisplayName": "IngestTelemetry",
+								"Theme": {}
+							}
+						}
+					}
+				},
+				"InTransit": {
+					"PercentComplete": 50,
+					"IsDefaultState": true,
+					"TargetState": "Completed",
+					"Style": "Success",
+					"Actions": {
+						"Counterparty": {
+							"TransferResponsibility": {
+								"DisplayName": "TransferResponsibility",
+								"Theme": {}
+							}
+						},
+						"Device": {
+							"IngestTelemetry": {
+								"DisplayName": "IngestTelemetry",
+								"Theme": {}
+							}
+						},
+						"Owner": {
+							"Complete": {}
+						}
+					}
+				},
+				"Completed": {
+					"PercentComplete": 100,
+					"Style": "Success",
+					"Actions": {}
+				},
+				"OutOfCompliance": {
+					"PercentComplete": 100,
+					"Style": "Failure",
+					"Actions": {}
+				}
+			},
+			"Properties": {
+				"Owner": {
+					"DisplayName": "Owner",
+					"Description": "Owner Description"
+				}
+			},
+			"Constructor": {
+				"DisplayName": "Create Telemetry Compliance",
+				"Description": "Description of telemetry compliance"
+			},
+			"Actions": {
+				"Complete": {
+					"DisplayName": "Mark as Completed"
+				}
+			}
+		}
+	}
+}

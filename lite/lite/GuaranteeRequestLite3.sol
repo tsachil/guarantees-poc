@@ -26,38 +26,38 @@ contract GuaranteeRequestLite3
     //premissions modifier for bank functions
     modifier onlyBank() {
         if ( msg.sender != _bank ) {
-            loga("###ERROR-not performd by BANK address",msg.sender);
+            //loga("###ERROR-not performd by BANK address",msg.sender);
             revert();
         }
-        loga("#pass BANK action check",msg.sender);
+        //loga("#pass BANK action check",msg.sender);
         _;
     }
 
     //premissions modifier for customer functions
     modifier onlyCustomer() {
         if ( msg.sender != _customer ) {
-            loga("###ERROR-not performd by CUSTOMER address",msg.sender);
+            //loga("###ERROR-not performd by CUSTOMER address",msg.sender);
             revert();
         }
-        loga("#pass CUSTOMER action check",msg.sender);
+        //loga("#pass CUSTOMER action check",msg.sender);
         _;
     }
 
     //premissions modifier for customer functions
     modifier onlyInState(RequestState requestedState) {
         if ( State != requestedState ) {
-            logi("###ERROR-not in state ",uint(requestedState));
+            //logi("###ERROR-not in state ",uint(requestedState));
             revert();
         }
-        logi("#pass state check",uint(requestedState));
+        //logi("#pass state check",uint(requestedState));
         _;
     }
 
     //general log event
-    event log(string log);
-    event logs(string log, string data);
-    event logi(string log, uint data);
-    event loga(string log, address data);
+    //event log(string log);
+    //event logs(string log, string data);
+    //event logi(string log, uint data);
+    //event loga(string log, address data);
 
     //------------------------------------------------------------------------//
 
@@ -71,7 +71,7 @@ contract GuaranteeRequestLite3
         _beneficiary = beneficiary;
         //set starting state
         State = RequestState.Created;
-        log("# contract GuaranteeRequestLite3 created");
+        //log("# contract GuaranteeRequestLite3 created");
     }
 
     /**
@@ -96,7 +96,7 @@ contract GuaranteeRequestLite3
         requestWording = wording;
         //change the contract state
         State = RequestState.Submitted;
-        loga("# customer submit guarantee request ", _customer);
+        //loga("# customer submit guarantee request ", _customer);
     }
 
     /**
@@ -106,7 +106,7 @@ contract GuaranteeRequestLite3
         requestComment = comment;
         //change the contract state
         State = RequestState.Withdrawaled;
-        loga("# customer withdrawal guarantee request ", _customer);
+        //loga("# customer withdrawal guarantee request ", _customer);
     }
 
     /**
@@ -117,7 +117,7 @@ contract GuaranteeRequestLite3
         requestComment=comment;    
         //change the contract state          
         State = RequestState.Rejected;
-        loga("# bank reject guarantee request ", _bank);
+        //loga("# bank reject guarantee request ", _bank);
     }
    
     /**
@@ -132,7 +132,7 @@ contract GuaranteeRequestLite3
 
         //change the contract state
         State = RequestState.Accepted;
-        loga("# bank accept guarantee request ", _bank);
+        //loga("# bank accept guarantee request ", _bank);
     }
 
 }

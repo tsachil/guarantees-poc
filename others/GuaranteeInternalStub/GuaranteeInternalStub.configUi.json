@@ -1,0 +1,100 @@
+{
+  "Contracts": {
+    "GuaranteeInternalStub": {
+      "InitiatingRoles": [
+        "Admin",
+        "User"
+      ],
+      "Personas": {
+        "Bank": {
+          "Role": "Initiator",
+          "IsInitiator": true,
+          "PropertyMapping": "Bank"
+        },
+        "Customer": {
+          "Role": "Participant",
+          "PropertyMapping": "Customer"
+        },
+        "Beneficiary": {
+          "Role": "Participant",
+          "PropertyMapping": "Beneficiary"
+        },
+        "InternalAuditor": {
+          "Role": "Participant",
+          "PropertyMapping": "InternalAuditor"
+        }
+      },
+      "StateProperty": "State",
+      "StateMapping": {
+        "Creating": 0,
+        "Created": 1,
+        "Handling": 2,
+        "Issued": 3,
+        "Rejected": 4
+      },
+      "States": {
+        "Creating": {
+          "PercentComplete": 0,
+          "IsInitiatingState": true,
+          "TargetState": "Created",
+          "Style": "Success",
+          "Actions": {
+            "Bank": {
+              "Create": {}
+            }
+          }
+        },
+        "Created": {
+          "PercentComplete": 10,
+          "IsDefaultState": true,
+          "TargetState": "Handling",
+          "Style": "Success",
+          "Actions": {
+            "Bank": {
+              "Handle": {}
+            }
+          }
+        },
+        "Handling": {
+          "PercentComplete": 50,
+          "TargetState": "Issued",
+          "Style": "Success",
+          "Actions": {
+            "Bank": {
+              "Issue": {},
+              "Reject": {}
+            }
+          }
+        },
+        "Issued": {
+          "PercentComplete": 50,
+          "Style": "Success",
+          "Actions": {}
+
+        },
+        "Rejected": {
+          "PercentComplete": 90,
+          "Style": "Success",
+          "Actions": {}
+
+        }
+
+      },
+      "Properties": {
+        "Bank": {
+          "DisplayName": "Bank",
+          "Description": "Bank Description"
+        }
+      },
+      "Constructor": {
+        "DisplayName": "Create Guarantee Internal",
+        "Description": "Description of Guarantee Internal"
+      },
+      "Actions": {
+        "Issue": {
+          "DisplayName": "Mark as Issued"
+        }
+      }
+    }
+  }
+}
