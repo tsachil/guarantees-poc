@@ -1,0 +1,137 @@
+{
+  "Contracts": {
+    "DigitalLocker": {
+      "InitiatingRoles": [
+        "Admin",
+        "User"
+      ],
+      "Personas": {
+        "Owner": {
+          "Role": "Initiator",
+          "IsInitiator": true,
+          "PropertyMapping": "Owner"
+        },
+        "BankAgent": {
+          "Role": "Participant",
+          "PropertyMapping": "BankAgent"
+        },
+        "ThirdPartyRequestor": {
+          "Role": "Participant",
+          "PropertyMapping": "ThirdPartyRequestor"
+        },
+        "CurrentlyAuthorizedUser": {
+          "Role": "Participant",
+          "PropertyMapping": "CurrentAuthorizedUser"
+        }
+      },
+      "StateProperty": "State",
+      "StateMapping": {
+        "Requested": 0,
+        "DocumentReview": 1,
+        "AvailableToShare": 2,
+        "SharingRequestPending": 3,
+        "SharingWithThirdParty": 4,
+        "Terminated": 5
+      },
+      "States": {
+        "Requested": {
+          "PercentComplete": 0,
+          "IsInitiatingState": true,
+          "TargetState": "DocumentReview",
+          "Style": "Success",
+          "Actions": {
+            "BankAgent": {
+              "BeginReviewProcess": {}
+            }
+          }
+        },
+        "DocumentReview": {
+          "PercentComplete": 20,
+          "IsDefaultState": true,
+          "TargetState": "AvailableToShare",
+          "Style": "Success",
+          "Actions": {
+            "BankAgent": {
+              "BeginReviewProcess": {},
+              "UploadDocuments": {
+                "DisplayName": "Upload Documents",
+                "Theme": {}
+              }
+            }
+          }
+        },
+        "AvailableToShare": {
+          "PercentComplete": 30,
+          "TargetState": "SharingWithThirdParty",
+          "Style": "Success",
+          "Actions": {
+            "Owner": {
+              "ShareWithThirdParty": {}
+            },
+            "BankAgent": {
+              "Terminate": {}
+            },
+            "ThirdPartyRequestor": {
+              "RequestLockerAccess": {}
+            }
+          }
+        },
+        "SharingRequestPending": {
+          "PercentComplete": 40,
+          "TargetState": "SharingWithThirdParty",
+          "Style": "Success",
+          "Actions": {
+            "Owner": {
+              "AcceptSharingRequest": {},
+              "RejectSharingRequest": {}
+            },
+            "BankAgent": {
+              "Terminate": {}
+            }
+          }
+        },
+        "SharingWithThirdParty": {
+          "PercentComplete": 45,
+          "TargetState": "AvailableToShare",
+          "Style": "Success",
+          "Actions": {
+            "Owner": {
+              "RevokeAccessFromThirdParty": {}
+            },
+            "BankAgent": {
+              "Terminate": {}
+            },
+            "ThirdPartyRequestor": {
+              "ReleaseLockerAccess": {}
+            }
+          }
+        },
+        "Terminated": {
+          "PercentComplete": 100,
+          "TargetState": "Terminated",
+          "Style": "Failure",
+          "Actions": {
+            "Owner": {},
+            "BankAgent": {},
+            "ThirdPartyRequestor": {}
+          }
+        }
+      },
+      "Properties": {
+        "Owner": {
+          "DisplayName": "Owner",
+          "Description": "Owner Description"
+        }
+      },
+      "Constructor": {
+        "DisplayName": "Request a digital locker",
+        "Description": "Description of digital locker"
+      },
+      "Actions": {
+        "Terminate": {
+          "DisplayName": "Terminate Locker"
+        }
+      }
+    }
+  }
+}

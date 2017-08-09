@@ -1,0 +1,102 @@
+{
+    "DigitalLocker": {
+      "Properties": {
+        "State": {
+          "Type": "state"
+        },
+        "Owner": {
+          "Type": "user"
+        },
+        "BankAgent": {
+          "Type": "user"
+        },
+        "LockerFriendlyName": {
+          "Type": "string"
+        },
+        "LockerIdentifier": {
+          "Type": "string"
+        },
+        "CurrentAuthorizedUser": {
+          "Type": "user"
+        },
+        "ExpirationDate": {
+          "Type": "string"
+        },
+        "Image": {
+          "Type": "image"
+        },
+        "ThirdPartyRequestor": {
+          "Type": "user"
+        },
+        "IntendedPurpose": {
+          "Type": "string"
+        },
+        "LockerStatus": {
+          "Type": "string"
+        },
+        "RejectionReason": {
+          "Type": "string"
+        }
+      },
+        "Constructor": {
+            "lockerFriendlyName": {
+                "Type": "string"
+            }
+        },
+      "Actions": {
+        "BeginReviewProcess": {},
+        "RejectApplication": {
+          "Parameters": {
+            "rejectionReason": {
+              "Type": "string"
+            }
+          }
+        },
+        "UploadDocuments": {
+          "Parameters": {
+            "lockerIdentifier": {
+              "Type": "string"
+            },
+            "image": {
+              "Type": "image"
+            }
+          }
+        },
+        "ShareWithThirdParty": {
+          "Parameters": {
+            "thirdParty": {
+              "Type": "user"
+            },
+            "expirationDate": {
+              "Type": "string"
+            },
+            "intendedPurpose": {
+              "Type": "string"
+            }
+          }
+        },
+        "AcceptSharingRequest": {},
+        "RejectSharingRequest": {},
+        "RequestLockerAccess": {
+          "Parameters": {
+            "intendedPurpose": {
+              "Type": "string"
+            }
+          }
+        },
+        "ReleaseLockerAccess": {},
+        "RevokeAccessFromThirdParty": {},
+        "Terminate": {}
+      },
+        "Chains": {
+            "Ethereum": {
+                "Type": "Ethereum",
+                "Version": "1.0",
+                "Location": "DigitalLocker.sol",
+                "TypeName": "DigitalLocker",
+                "ActionOverrides": {},
+                "PropertyOverrides": {}
+            }
+        }
+    }
+}

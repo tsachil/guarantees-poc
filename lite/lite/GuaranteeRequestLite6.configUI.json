@@ -1,6 +1,6 @@
 {
   "Contracts": {
-    "GuaranteeRequestLite3": {
+    "GuaranteeRequestLite6": {
       "InitiatingRoles": [
         "Admin",
         "User"

@@ -1,6 +1,28 @@
 pragma solidity ^0.4.10;
 
-contract GuaranteeRequestLite3 
+/**
+* LexingtonBase contract to allow contract interaction with another contract under the framework
+**/
+contract LexingtonBase {
+    event LexingtonContractCreated(string contractType, address originatingAddress);
+    event LexingtonContractUpdated(string contractType, string action, address originatingAddress);
+    
+    string ContractType;
+
+    function LexingtonBase(string contractType) {
+        ContractType = contractType;
+    }
+
+    function ContractCreated() {
+        LexingtonContractCreated(ContractType, msg.sender);
+    }
+
+    function ContractUpdated(string action) {
+        LexingtonContractUpdated(ContractType, action, msg.sender);
+    }
+}
+
+contract GuaranteeRequestLite6 is LexingtonBase('GuaranteeRequestLite6') 
 {
     //guarantee request states
     enum RequestState { Creating, Created, Submitted, Withdrawaled, Accepted, Rejected }
@@ -18,6 +40,7 @@ contract GuaranteeRequestLite3
     uint   public requestAmount;
     string public requestComment;
     string public requestPurpose;
+    string public wordingFile;
     //guarantee request internal variables
     string requestCustomerAddress;
     string requestBeneficiaryAddress;
@@ -26,52 +49,51 @@ contract GuaranteeRequestLite3
     //premissions modifier for bank functions
     modifier onlyBank() {
         if ( msg.sender != _bank ) {
-            //loga("###ERROR-not performd by BANK address",msg.sender);
+            guaranteesLog("###ERROR-not performd by BANK address");
             revert();
         }
-        //loga("#pass BANK action check",msg.sender);
+        guaranteesLog("#pass BANK action check");
         _;
     }
 
     //premissions modifier for customer functions
     modifier onlyCustomer() {
         if ( msg.sender != _customer ) {
-            //loga("###ERROR-not performd by CUSTOMER address",msg.sender);
+            guaranteesLog("###ERROR-not performd by CUSTOMER address");
             revert();
         }
-        //loga("#pass CUSTOMER action check",msg.sender);
+        guaranteesLog("#pass CUSTOMER action check");
         _;
     }
 
     //premissions modifier for customer functions
     modifier onlyInState(RequestState requestedState) {
         if ( State != requestedState ) {
-            //logi("###ERROR-not in state ",uint(requestedState));
+            guaranteesLog("###ERROR-not in state ");
             revert();
         }
-        //logi("#pass state check",uint(requestedState));
+        guaranteesLog("#pass state check");
         _;
     }
 
     //general log event
-    //event log(string log);
-    //event logs(string log, string data);
-    //event logi(string log, uint data);
-    //event loga(string log, address data);
+    event guaranteesLog(string log);
 
     //------------------------------------------------------------------------//
 
     /**
     * contract constructor
     **/
-    function GuaranteeRequestLite3(address bank, address beneficiary) {
+    function GuaranteeRequestLite6(address bank, address beneficiary) {
         //assign participants      
         _customer=msg.sender;
         _bank = bank;
         _beneficiary = beneficiary;
         //set starting state
         State = RequestState.Created;
-        //log("# contract GuaranteeRequestLite3 created");
+        //signaling lexington on the contract creation
+        ContractCreated();
+        guaranteesLog("# contract GuaranteeRequestLite6 created");
     }
 
     /**
@@ -79,7 +101,7 @@ contract GuaranteeRequestLite3
     **/
     function Submit(uint amount, string startDate, string endDate,
                     string cname, string caddress, string bname,
-                    string baddress, string purpose, string wording, string comment)
+                    string baddress, string purpose, string wording, string comment, string wordingFileUpload)
                     onlyCustomer()
                     onlyInState(RequestState.Created) {
 
@@ -94,9 +116,12 @@ contract GuaranteeRequestLite3
         requestPurpose = purpose;
         requestComment = comment;
         requestWording = wording;
+        wordingFile = wordingFileUpload;
         //change the contract state
         State = RequestState.Submitted;
-        //loga("# customer submit guarantee request ", _customer);
+        //signaling lexington the contract was updated
+        ContractUpdated("Submit");
+        guaranteesLog("# customer submit guarantee request ");
     }
 
     /**
@@ -106,7 +131,9 @@ contract GuaranteeRequestLite3
         requestComment = comment;
         //change the contract state
         State = RequestState.Withdrawaled;
-        //loga("# customer withdrawal guarantee request ", _customer);
+        //signaling lexington the contract was updated
+        ContractUpdated("Withdrawal");
+        guaranteesLog("# customer withdrawal guarantee request ");
     }
 
     /**
@@ -117,7 +144,9 @@ contract GuaranteeRequestLite3
         requestComment=comment;    
         //change the contract state          
         State = RequestState.Rejected;
-        //loga("# bank reject guarantee request ", _bank);
+        //signaling lexington the contract was updated
+        ContractUpdated("Reject");
+        guaranteesLog("# bank reject guarantee request ");
     }
    
     /**
@@ -132,7 +161,9 @@ contract GuaranteeRequestLite3
 
         //change the contract state
         State = RequestState.Accepted;
-        //loga("# bank accept guarantee request ", _bank);
+        //signaling lexington the contract was updated
+        ContractUpdated("Accept");
+        guaranteesLog("# bank accept guarantee request ");
     }
 
 }

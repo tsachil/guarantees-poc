@@ -1,5 +1,5 @@
 {
-  "GuaranteeRequestLite3": {
+  "GuaranteeRequestLite6": {
     "Properties": {
       "State": {
         "Type": "state"
@@ -22,13 +22,6 @@
       "requestBeneficiaryName": {
         "Type": "string"
       },
-      "requestCustomerAddress": {
-        "Type": "string"
-      },
-      "requestBeneficiaryAddress": {
-        "Type": "string"
-      },
-
       "requestStartDate": {
         "Type": "string"
       },
@@ -43,8 +36,10 @@
       },
       "requestComment": {
         "Type": "string"
-      }
-
+      },
+        "wordingFile": {
+          "Type": "image"
+        }
     },
       "Constructor": {
         "bank": {
@@ -86,6 +81,9 @@
           },
           "comment": {
             "Type": "string"
+          },
+          "wordingFileUpload": {
+            "Type": "image"
           }
         }
       },
@@ -115,8 +113,8 @@
       "Ethereum": {
         "Type": "Ethereum",
         "Version": "1.0",
-        "Location": "GuaranteeRequestLite3.sol",
-        "TypeName": "GuaranteeRequestLite3",
+        "Location": "GuaranteeRequestLite6.sol",
+        "TypeName": "GuaranteeRequestLite6",
         "ActionOverrides": {},
         "PropertyOverrides": {}
       }
